@@ -13,20 +13,18 @@ public struct Direction {
   }
 }
 
-extension Float {
-  public var degrees: Float {
-    return self * 180.0 / Float.pi
-  }
+public func degrees(from radians: Float) -> Float {
+  return radians * 180.0 / Float.pi
+}
 
-  public var radians: Float {
-    return self * Float.pi / 180.0
-  }
+public func radians(from degrees: Float) -> Float {
+  return degrees * Float.pi / 180.0
 }
 
 public func velocity(from d: Direction) -> Velocity {
   return Velocity(
-    x: sin(d.angle.radians) * d.speed,
-    y: cos(d.angle.radians) * d.speed
+    x: sin(radians(from: d.angle)) * d.speed,
+    y: cos(radians(from: d.angle)) * d.speed
   )
 }
 
